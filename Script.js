@@ -1,13 +1,12 @@
-console.log("Hello world")
-let computerChoice;
-let playerChoice;
-let winStatus;
-let loseStatus;
+let winStatus = 0;
+let loseStatus = 0;
+let drawStatus = 0;
 // This is a test
 function getRandomInt() {
     return Math.floor(Math.random() * 3);
 }
 function getComputerChoice() {
+    let computerChoice
     let choiceNum = getRandomInt()
     if (choiceNum === 0) {
         computerChoice = "Rock";
@@ -16,23 +15,24 @@ function getComputerChoice() {
     } else if (choiceNum === 2) {
         computerChoice = "Scissors"
     }
-    console.log(computerChoice);
     return computerChoice;
 }
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     let gameDeclaration;
+    console.log(`Computer chose ${computerSelection}.`);
     if ((playerSelection === "Paper" && computerSelection === "Rock") || (playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper")) {
         gameDeclaration = `You win! ${playerSelection} beats ${computerSelection}!`;
+        winStatus += 1;
         return gameDeclaration;
-        winStatus = ++winStatus;
     } else if ((playerSelection === "Paper" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Rock") || (playerSelection === "Rock" && computerSelection === "Paper")) {
         gameDeclaration = `You lose! ${computerSelection} beats ${playerSelection}!`
-        return gameDeclaration;
-        loseStatus = ++loseStatus;
+        loseStatus += 1;
+        return gameDeclaration;       
     } else if (playerSelection === computerSelection) {
         gameDeclaration = "Draw!"
+        drawStatus += 1;
         return gameDeclaration;
     } 
     else {
@@ -40,6 +40,13 @@ function playRound(playerSelection, computerSelection) {
     }
     console.log(gameDeclaration);
 }
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, Paper, or Scissors?");
+        let computerSelection = getComputerChoice();
+        let gameDeclaration = playRound(playerSelection, computerSelection);
+        console.log(gameDeclaration);
+    }
+    console.log(`You won ${winStatus} time(s), lost ${loseStatus} time(s), and had a draw ${drawStatus} time(s)!`)
+}
+game();
