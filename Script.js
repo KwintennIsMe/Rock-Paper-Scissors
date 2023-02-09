@@ -10,43 +10,32 @@ function getRandomInt() {
 function getComputerChoice() {
     let choiceNum = getRandomInt()
     if (choiceNum === 0) {
-        computerChoice = "rock";
+        computerChoice = "Rock";
     } else if (choiceNum === 1) {
-        computerChoice = "paper";
+        computerChoice = "Paper";
     } else if (choiceNum === 2) {
-        computerChoice = "scissors"
+        computerChoice = "Scissors"
     }
+    console.log(computerChoice);
     return computerChoice;
 }
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
+    playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1);
     let gameDeclaration;
-    if (playerSelection === "paper" && computerSelection === "rock") {
-        gameDeclaration = "You win! Paper beats Rock!";
+    if ((playerSelection === "Paper" && computerSelection === "Rock") || (playerSelection === "Rock" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Paper")) {
+        gameDeclaration = `You win! ${playerSelection} beats ${computerSelection}!`;
         return gameDeclaration;
         winStatus = ++winStatus;
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        gameDeclaration = "You win! Rock beats Scissors!";
-        return gameDeclaration;
-        winStatus = ++winStatus;
-    } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        gameDeclaration = "You win! Scissors beats Paper!";
-        return gameDeclaration;
-        winStatus = ++winStatus;
-    } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        gameDeclaration = "You lose! Scissors beats Paper!"
+    } else if ((playerSelection === "Paper" && computerSelection === "Scissors") || (playerSelection === "Scissors" && computerSelection === "Rock") || (playerSelection === "Rock" && computerSelection === "Paper")) {
+        gameDeclaration = `You lose! ${computerSelection} beats ${playerSelection}!`
         return gameDeclaration;
         loseStatus = ++loseStatus;
-    } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        gameDeclaration = "You lose! Rock beats Scissors!"
+    } else if (playerSelection === computerSelection) {
+        gameDeclaration = "Draw!"
         return gameDeclaration;
-        loseStatus = ++loseStatus;
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        gameDeclaration = "You lose! Paper beats Rock!";
-        return gameDeclaration;
-        loseStatus = ++loseStatus;
-    } else if ()
-      else {
+    } 
+    else {
         console.log("Something went wrong.")
     }
     console.log(gameDeclaration);
