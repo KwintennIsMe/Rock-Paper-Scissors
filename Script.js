@@ -3,7 +3,7 @@ let computerChoice;
 let playerChoice;
 let winStatus;
 let loseStatus;
-
+// This is a test
 function getRandomInt() {
     return Math.floor(Math.random() * 3);
 }
